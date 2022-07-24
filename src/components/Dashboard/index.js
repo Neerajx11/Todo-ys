@@ -30,7 +30,7 @@ const Dashboard = () => {
         transform: `translateX(${(5 - idx) * 6}px)`,
         zIndex: `${5 - idx}`,
       }}
-      className="w-8 h-8"
+      className="w-8 h-8 border-2 shadow-sm border-solid border-white rounded-full"
       alt={`user${idx}`}
     />
   ));
