@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   const { auth } = useSelector((state) => state);
-  console.log(auth.email);
   return auth?.email ? (
     <Component {...props} />
   ) : (

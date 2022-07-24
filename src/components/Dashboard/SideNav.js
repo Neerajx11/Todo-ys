@@ -27,11 +27,11 @@ const SideNav = () => {
   return (
     <nav className="shadow-lg pt-4 pb-12 h-screen w-max">
       {/* logo */}
-      <div className="text-[#161616] font-medium text-xl pl-8 pr-24 h-[10%]">
+      <div className="text-[#161616] font-medium text-xl pl-8 pr-24 h-[7%]">
         .taskez
       </div>
       {/* menu icons */}
-      <div className="list-none flex flex-col text-gray-400 h-[40%]">
+      <div className="list-none flex flex-col text-gray-400 h-[38%]">
         <li className={liClass}>
           <Home className={iconClass} />
           <span>Overview</span>
@@ -55,7 +55,7 @@ const SideNav = () => {
           <span>Calender</span>
         </li>
       </div>
-      <div className="h-[35%]"></div>
+      <div className="h-[40%]"></div>
       {/* setting and logout */}
       <div className="list-none text-gray-400 h-[15%]">
         <li className={liClass}>

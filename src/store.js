@@ -3,7 +3,7 @@ import authReducer from "./features/authSlice";
 import { getUserFromLocalStorage } from "./helper/localStorageHelper";
 
 const initialAuthState = {
-  name: "",
+  fullName: "",
   email: "",
   password: "",
   rememberMe: false,

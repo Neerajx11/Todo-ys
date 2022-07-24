@@ -1,5 +1,5 @@
 import React from "react";
-import { Search } from "react-feather";
+import { Filter, Search } from "react-feather";
 import SideNav from "./SideNav";
 import User1 from "../../assets/user1.png";
 import User2 from "../../assets/user2.png";
@@ -9,10 +9,12 @@ import User5 from "../../assets/user5.png";
 import DefaultUser from "../../assets/default.png";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
+import Todo from "../Todo";
 
 const Dashboard = () => {
   const { auth } = useSelector((state) => state);
   const getName = () => {
+    console.log(auth);
     if (auth?.fullName) {
       let [name] = auth.fullName.split(" ");
       return name;
@@ -38,10 +40,10 @@ const Dashboard = () => {
       <div>
         <SideNav />
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full px-8">
         <div className="w-full">
           {/* header */}
-          <section className="px-10 py-5 flex justify-between">
+          <section className=" py-5 flex justify-between">
             <div className="text-gray-400 flex items-center">
               <Search className="w-4 h-4 mr-4" />
               <span>Search</span>
@@ -53,7 +55,21 @@ const Dashboard = () => {
             </div>
           </section>
         </div>
-        <div className="bg-blue-300">a</div>
+        {/* Todo section */}
+        <div className="">
+          {/* todo title */}
+          <div className="flex justify-between pt-4 mb-6 tracking-wide">
+            <span className="text-2xl font-medium">Project</span>
+            <div className="flex items-center text-icon">
+              <Filter className="w-4 h-4 mr-1" />
+              <span>Filter</span>
+            </div>
+          </div>
+          {/* todo groups */}
+          <div>
+            <Todo />
+          </div>
+        </div>
       </div>
     </div>
   );

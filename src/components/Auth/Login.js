@@ -49,6 +49,7 @@ const Login = () => {
       if (values.rememberMe) saveUserToLocalStorage(values);
 
       // set user globally
+      console.log(user);
       dispatch(login(user));
       return;
     }
