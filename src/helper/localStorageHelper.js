@@ -14,10 +14,13 @@ export const isUserAvailable = (userObj) => {
   return user;
 };
 
-// use to get user details if login state was persisted
+// function to manage persistance of user
 export const saveUserToLocalStorage = (userObj) => {
   localStorage.setItem("user", JSON.stringify(userObj));
 };
 export const getUserFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem("user"));
+};
+export const clearUserFromLocalStorage = () => {
+  return localStorage.removeItem("user");
 };

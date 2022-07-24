@@ -49,7 +49,7 @@ const Login = () => {
       if (values.rememberMe) saveUserToLocalStorage(values);
 
       // set user globally
-      dispatch(login(values));
+      dispatch(login(user));
       return;
     }
     // if we dont have user in record show err
