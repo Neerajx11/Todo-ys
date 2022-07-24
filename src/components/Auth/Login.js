@@ -3,6 +3,12 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 
 import { AlertCircle, Eye, EyeOff } from "react-feather";
+import {
+  isUserAvailable,
+  saveUserToLocalStorage,
+} from "../../helper/localStorageHelper";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/authSlice";
 
 const Error = (msg) => (
   <div className="absolute text-xs left-1 text-err -bottom-2">{msg}</div>
@@ -24,15 +30,30 @@ const validationSchema = Yup.object({
 const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [loginErr, setLoginErr] = useState(false);
-
+  const dispatch = useDispatch();
   const showErr = () => {
     setLoginErr(true);
     setTimeout(() => setLoginErr(false), 3000);
   };
 
   const onSubmit = (values) => {
+    // if we have record of user
+    const [user] = isUserAvailable(values);
+    if (user?.email) {
+      // email password doesn't match
+      if (user.email !== values.email || user.password !== values.password) {
+        showErr();
+        return;
+      }
+      // if login should be persisted
+      if (values.rememberMe) saveUserToLocalStorage(values);
+
+      // set user globally
+      dispatch(login(values));
+      return;
+    }
+    // if we dont have user in record show err
     showErr();
-    console.log(values);
   };
 
   return (
