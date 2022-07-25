@@ -15,7 +15,7 @@ const EditTodo = ({ todoObj, setIsEditTodo, isEditTodo }) => {
     const payloadObj = { ...todoObj };
     payloadObj.description = inp;
     delete payloadObj.todoType;
-
+    console.log(payloadObj);
     dispatch(
       editTodo({
         todoType: todoObj.todoType,
@@ -43,6 +43,8 @@ const EditTodo = ({ todoObj, setIsEditTodo, isEditTodo }) => {
           <div>
             <p className="text-lg font-medium tracking-wide text-icon">
               {todoObj.title}
+              {todoObj.id}
+              {todoObj.todoType}
             </p>
             <p className="w-6 h-1 mt-0.5 rounded-lg bg-primary"></p>
           </div>

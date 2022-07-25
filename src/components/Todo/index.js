@@ -63,40 +63,40 @@ function Todo() {
         setIsEditTodo={setIsEditTodo}
       />
       {/* 3 col div */}
-      <div className="relative flex space-x-6">
+      <div className="relative flex space-x-6 h-[calc(100vh_-_170px)]">
         {Object.entries(todoList).map(([todoType, todoItems]) => {
           // mapping all the todo types and making columns
           return (
-            <Droppable droppableId={todoType} key={v4()}>
-              {(provided, snapshot) => {
-                return (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    className={`${
-                      snapshot.isDraggingOver
-                        ? "bg-bgsecondary bg-opacity-95"
-                        : "bg-bgsecondary"
-                    } px-4 py-5 w-4/12 min-h-[500px] rounded-lg`}
-                  >
-                    {/* todo column heading */}
-                    <HeaderTodoCol type={todoType} length={todoItems.length} />
-                    {/* todo add option */}
-                    <AddTodo />
-                    {/* mapping items of todos */}
+            <div
+              key={v4()}
+              className="w-4/12 px-4 py-5 rounded-lg bg-bgsecondary"
+            >
+              {/* todo column heading */}
+              <HeaderTodoCol type={todoType} length={todoItems.length} />
+              {/* todo add option */}
+              <AddTodo todoType={todoType} />
+              {/* mapping items of todos */}
+              <Droppable droppableId={todoType}>
+                {(provided, snapshot) => {
+                  return (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className={`h-[calc(100%_-_80px)]`}
+                    >
+                      <TodoCard
+                        setTodoToEdit={setTodoToEdit}
+                        setIsEditTodo={setIsEditTodo}
+                        todoItems={todoItems}
+                        todoType={todoType}
+                      />
 
-                    <TodoCard
-                      setTodoToEdit={setTodoToEdit}
-                      setIsEditTodo={setIsEditTodo}
-                      todoItems={todoItems}
-                      todoType={todoType}
-                    />
-
-                    {provided.placeholder}
-                  </div>
-                );
-              }}
-            </Droppable>
+                      {provided.placeholder}
+                    </div>
+                  );
+                }}
+              </Droppable>
+            </div>
           );
         })}
       </div>
