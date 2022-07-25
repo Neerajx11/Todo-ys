@@ -39,7 +39,7 @@ const Dashboard = () => {
       <div>
         <SideNav />
       </div>
-      <div className="flex flex-col w-full px-8">
+      <div className="flex flex-col w-full px-8 ml-[250px]">
         <div className="w-full">
           {/* header */}
           <section className="flex justify-between py-5 ">

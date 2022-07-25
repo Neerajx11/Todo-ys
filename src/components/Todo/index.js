@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -7,15 +7,23 @@ import { shiftTodo } from "../../features/todoSlice";
 import { saveTodoListToLocal } from "../../helper/localStorageHelper";
 
 import AddTodo from "./AddTodo";
+import EditTodo from "./EditTodo";
 import HeaderTodoCol from "./HeaderTodoCol";
 import TodoCard from "./TodoCard";
+
+const todoObj = {
+  id: "",
+  type: "",
+  title: "",
+  description: "",
+  madeBy: { name: "", email: "" },
+};
 
 function Todo() {
   const { todo: todoList } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Save to local");
     saveTodoListToLocal(todoList);
   }, [todoList]);
 
@@ -44,10 +52,18 @@ function Todo() {
     dispatch(shiftTodo(payload));
   };
 
+  const [isEditTodo, setIsEditTodo] = useState(false);
+  const [todoToEdit, setTodoToEdit] = useState(todoObj);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <EditTodo
+        todoObj={todoToEdit}
+        isEditTodo={isEditTodo}
+        setIsEditTodo={setIsEditTodo}
+      />
       {/* 3 col div */}
-      <div className="flex space-x-6">
+      <div className="relative flex space-x-6">
         {Object.entries(todoList).map(([todoType, todoItems]) => {
           // mapping all the todo types and making columns
           return (
@@ -61,14 +77,21 @@ function Todo() {
                       snapshot.isDraggingOver
                         ? "bg-bgsecondary bg-opacity-95"
                         : "bg-bgsecondary"
-                    } px-4 py-5 w-4/12 min-h-[500px] rounded-lg `}
+                    } px-4 py-5 w-4/12 min-h-[500px] rounded-lg`}
                   >
                     {/* todo column heading */}
                     <HeaderTodoCol type={todoType} length={todoItems.length} />
                     {/* todo add option */}
                     <AddTodo />
                     {/* mapping items of todos */}
-                    <TodoCard todoItems={todoItems} />
+
+                    <TodoCard
+                      setTodoToEdit={setTodoToEdit}
+                      setIsEditTodo={setIsEditTodo}
+                      todoItems={todoItems}
+                      todoType={todoType}
+                    />
+
                     {provided.placeholder}
                   </div>
                 );

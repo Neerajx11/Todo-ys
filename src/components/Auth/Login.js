@@ -15,6 +15,7 @@ const Error = (msg) => (
 );
 
 const initialValues = {
+  fullName: "",
   email: "",
   password: "",
   rememberMe: false,
@@ -46,10 +47,9 @@ const Login = () => {
         return;
       }
       // if login should be persisted
-      if (values.rememberMe) saveUserToLocalStorage(values);
+      if (values.rememberMe) saveUserToLocalStorage(user);
 
       // set user globally
-      console.log(user);
       dispatch(login(user));
       return;
     }

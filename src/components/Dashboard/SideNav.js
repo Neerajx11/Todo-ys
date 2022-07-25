@@ -25,7 +25,7 @@ const SideNav = () => {
   };
 
   return (
-    <nav className="shadow-lg pt-4 pb-12 h-screen w-max">
+    <nav className="fixed h-screen pt-4 pb-12 shadow-lg w-max">
       {/* logo */}
       <div className="text-[#161616] font-medium text-xl pl-8 pr-24 h-[7%]">
         .taskez

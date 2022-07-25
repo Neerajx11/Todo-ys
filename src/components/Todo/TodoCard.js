@@ -2,7 +2,7 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import FooterTodo from "./FooterTodo";
 
-const TodoCard = ({ todoItems }) => {
+const TodoCard = ({ todoItems, setTodoToEdit, setIsEditTodo, todoType }) => {
   return (
     <>
       {todoItems.map((item, idx) => {
@@ -18,7 +18,10 @@ const TodoCard = ({ todoItems }) => {
                     snapshot.isDragging ? "bg-white bg-opacity-50" : "bg-white"
                   } `}
                   style={{ ...provided.draggableProps.style }}
-                  onClick={() => console.log("Hello")}
+                  onClick={() => {
+                    setTodoToEdit({ todoType: todoType, ...item });
+                    setIsEditTodo(true);
+                  }}
                 >
                   {/* each card here */}
                   <span>{item.title}</span>
