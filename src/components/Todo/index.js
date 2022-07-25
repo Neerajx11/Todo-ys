@@ -14,12 +14,20 @@ const data = {
       title: "Tone",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
     {
       id: v4(),
       title: "Ttwo",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
   ],
   progress: [
@@ -28,12 +36,20 @@ const data = {
       title: "Pthree",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
     {
       id: v4(),
       title: "Pfour",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
   ],
   completed: [
@@ -42,18 +58,30 @@ const data = {
       title: "Cfive",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
     {
       id: v4(),
       title: "Csix",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
     {
       id: v4(),
       title: "Cseven",
       description:
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
+      madeBy: {
+        name: "Some Name",
+        email: "some@g.com",
+      },
     },
   ],
 };
@@ -68,7 +96,7 @@ const baseTodo = {
 //   type:"completed",
 //   title:"Hello",
 //   description:"body",
-// }
+//   madeBy :{name:"someName", email:"email"}
 
 function Todo() {
   const [todoList, setTodoList] = useState(baseTodo);

@@ -14,7 +14,6 @@ import Todo from "../Todo";
 const Dashboard = () => {
   const { auth } = useSelector((state) => state);
   const getName = () => {
-    console.log(auth);
     if (auth?.fullName) {
       let [name] = auth.fullName.split(" ");
       return name;
@@ -30,7 +29,7 @@ const Dashboard = () => {
         transform: `translateX(${(5 - idx) * 6}px)`,
         zIndex: `${5 - idx}`,
       }}
-      className="w-8 h-8 border-2 shadow-sm border-solid border-white rounded-full"
+      className="w-8 h-8 border-2 border-white border-solid rounded-full shadow-sm"
       alt={`user${idx}`}
     />
   ));
@@ -43,8 +42,8 @@ const Dashboard = () => {
       <div className="flex flex-col w-full px-8">
         <div className="w-full">
           {/* header */}
-          <section className=" py-5 flex justify-between">
-            <div className="text-gray-400 flex items-center">
+          <section className="flex justify-between py-5 ">
+            <div className="flex items-center text-gray-400">
               <Search className="w-4 h-4 mr-4" />
               <span>Search</span>
             </div>
