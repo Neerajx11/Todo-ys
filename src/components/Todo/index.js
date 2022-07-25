@@ -1,126 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { v4 } from "uuid";
-import { handleDrag } from "../../helper/handleDrag";
+import { shiftTodo } from "../../features/todoSlice";
+import { saveTodoListToLocal } from "../../helper/localStorageHelper";
 
 import AddTodo from "./AddTodo";
 import HeaderTodoCol from "./HeaderTodoCol";
 import TodoCard from "./TodoCard";
 
-const data = {
-  todo: [
-    {
-      id: v4(),
-      title: "Tone",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-    {
-      id: v4(),
-      title: "Ttwo",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-  ],
-  progress: [
-    {
-      id: v4(),
-      title: "Pthree",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-    {
-      id: v4(),
-      title: "Pfour",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-  ],
-  completed: [
-    {
-      id: v4(),
-      title: "Cfive",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-    {
-      id: v4(),
-      title: "Csix",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-    {
-      id: v4(),
-      title: "Cseven",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem natus dolores optio",
-      madeBy: {
-        name: "Some Name",
-        email: "some@g.com",
-      },
-    },
-  ],
-};
-const baseTodo = {
-  todo: [],
-  progress: [],
-  completed: [],
-};
-
-// const todoObj={
-//   id:v4(),
-//   type:"completed",
-//   title:"Hello",
-//   description:"body",
-//   madeBy :{name:"someName", email:"email"}
-
 function Todo() {
-  const [todoList, setTodoList] = useState(baseTodo);
-
-  const addTodo = (todoObj, setTodoList) => {
-    setTodoList((prev) => {
-      let data = { ...prev, [todoObj.type]: [todoObj, ...prev[todoObj.type]] };
-      try {
-        localStorage.setItem("todo", JSON.stringify(data));
-      } catch (e) {
-        console.log(e);
-      }
-      return data;
-    });
-  };
+  const { todo: todoList } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setTodoList(data);
-  }, []);
+    console.log("Save to local");
+    saveTodoListToLocal(todoList);
+  }, [todoList]);
+
+  const onDragEnd = (result) => {
+    //*** no updates if the todo not dropped in any todo column type
+    if (!result.destination) return;
+
+    const { source, destination } = result;
+    //*** no updates if the todo come back to same place
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
+    // creating payload to shiftTodo
+    const payload = {
+      sourceIdx: source.index,
+      destinationIdx: destination.index,
+      sourceType: source.droppableId,
+      destinationType: destination.droppableId,
+    };
+
+    //***  move todo in our state
+    dispatch(shiftTodo(payload));
+  };
 
   return (
-    <DragDropContext
-      onDragEnd={(result) => handleDrag(result, todoList, setTodoList)}
-    >
+    <DragDropContext onDragEnd={onDragEnd}>
       {/* 3 col div */}
       <div className="flex space-x-6">
         {Object.entries(todoList).map(([todoType, todoItems]) => {

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/authSlice";
 import todoReducer from "./features/todoSlice";
-import { getUserFromLocalStorage } from "./helper/localStorageHelper";
+import {
+  getTodoFromLocalStorage,
+  getUserFromLocalStorage,
+} from "./helper/localStorageHelper";
 
 const initialAuthState = {
   fullName: "",
@@ -10,7 +13,14 @@ const initialAuthState = {
   rememberMe: false,
 };
 
-const authLocalState = getUserFromLocalStorage("user") || initialAuthState;
+const initialTodoState = {
+  todo: [],
+  progress: [],
+  completed: [],
+};
+
+const authLocalState = getUserFromLocalStorage() || initialAuthState;
+const todoLocalState = getTodoFromLocalStorage() || initialTodoState;
 
 const store = configureStore({
   reducer: {
@@ -19,6 +29,7 @@ const store = configureStore({
   },
   preloadedState: {
     auth: authLocalState,
+    todo: todoLocalState,
   },
 });
 

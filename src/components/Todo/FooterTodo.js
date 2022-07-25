@@ -16,4 +16,4 @@ const FooterTodo = () => {
   );
 };
 
-export default FooterTodo;
+export default React.memo(FooterTodo);
