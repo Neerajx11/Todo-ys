@@ -35,7 +35,7 @@ const AddTodo = ({ todoType }) => {
     <>
       <div
         onClick={() => setShowInput((prev) => !prev)}
-        className="text-primary cursor-pointer bg-bgprimary text-center text-md py-1 rounded-lg my-4 hover:bg-[#DEF0F0]"
+        className="text-primary cursor-pointer bg-bgprimary text-center text-xl py-1 rounded-lg my-4 hover:bg-[#DEF0F0]"
       >
         +
       </div>

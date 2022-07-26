@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    overflow-x: hidden;
-  }
   *::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -14,15 +10,16 @@
 
   *::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background: #374140;
+    background: #eeeeee;
   }
 
   *::-webkit-scrollbar-thumb {
-    background: #329c89;
     border-radius: 100vh;
+    background: #e4e5e8;
+    border: 1px solid lightgray;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: #3bc96a;
+    background: #d9d9d9;
   }
 }
