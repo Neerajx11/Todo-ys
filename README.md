@@ -17,13 +17,13 @@ Simple todo app with drag and drop. [Try out](https://todoys.vercel.app/)
 Clone the project
 
 ```bash
-git clone https://link-to-project
+git clone https://github.com/Neerajx11/Todo-ys
 ```
 
 Go to the project directory
 
 ```bash
-cd my-project
+cd Todo-ys
 ```
 
 Install dependencies
