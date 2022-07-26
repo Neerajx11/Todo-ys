@@ -9,6 +9,9 @@ export const isUserAvailable = (userObj) => {
   let user = userList.filter((el) => el.email === userObj.email);
   return user;
 };
+export const getUserLocalList = () => {
+  return JSON.parse(localStorage.getItem("userList") || "[]");
+};
 
 // function to manage persistance of user
 export const saveUserToLocalStorage = (userObj) => {

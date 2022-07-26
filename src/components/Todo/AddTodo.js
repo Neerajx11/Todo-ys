@@ -35,7 +35,7 @@ const AddTodo = ({ todoType }) => {
     <>
       <div
         onClick={() => setShowInput((prev) => !prev)}
-        className="text-primary cursor-pointer bg-bgprimary text-center text-base py-1 rounded-lg my-4 hover:bg-[#DEF0F0]"
+        className="text-primary cursor-pointer bg-bgprimary text-center text-md py-1 rounded-lg my-4 hover:bg-[#DEF0F0]"
       >
         +
       </div>
@@ -46,21 +46,21 @@ const AddTodo = ({ todoType }) => {
             onChange={inpHandler}
             name="title"
             type="text"
-            className="w-full px-2 py-3 bg-gray-100 text-md focus:outline-none"
+            className="w-full px-2 py-3 text-md focus:outline-none"
             placeholder="Give your task a title"
           />
           <textarea
             value={inp.description}
             onChange={inpHandler}
             name="description"
-            className="w-full bg-gray-100 h-[60px] text-sm text-[#6B6B6B] focus:outline-none px-2 py3"
+            className="w-full h-[60px] text-sm text-[#6B6B6B] focus:outline-none px-2 py3"
             placeholder="Description:"
           ></textarea>
           <div
-            className="flex justify-end pb-2 m-2 bg-white rounded-full text-primary"
+            className="flex justify-center pb-2 m-2 bg-white rounded-full text-primary"
             onClick={clickHandler}
           >
-            <Check className="w-8 h-8 p-2 rounded-full cursor-pointer bg-bgsecondary" />
+            <Check className="h-8 p-2 rounded-full cursor-pointer w-14 bg-bgsecondary" />
           </div>
         </div>
       )}

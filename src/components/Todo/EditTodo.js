@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { X } from "react-feather";
-import DefaultUser from "../../assets/default.png";
+import User4 from "../../assets/user4.png";
 import { useDispatch } from "react-redux";
 import { deleteTodo, editTodo } from "../../features/todoSlice";
 
@@ -43,8 +43,6 @@ const EditTodo = ({ todoObj, setIsEditTodo, isEditTodo }) => {
           <div>
             <p className="text-lg font-medium tracking-wide text-icon">
               {todoObj.title}
-              {todoObj.id}
-              {todoObj.todoType}
             </p>
             <p className="w-6 h-1 mt-0.5 rounded-lg bg-primary"></p>
           </div>
@@ -56,7 +54,7 @@ const EditTodo = ({ todoObj, setIsEditTodo, isEditTodo }) => {
         <div className="flex items-center mt-12 text-sm">
           <span className="mr-12 text-[#6B6B6B] =">Created By</span>
           <div className="flex items-center">
-            <img src={DefaultUser} className="w-6 h-6" alt="default user" />
+            <img src={User4} className="w-6 h-6" alt="default user" />
             <span className="ml-4">{todoObj.madeBy.name}</span>
           </div>
         </div>

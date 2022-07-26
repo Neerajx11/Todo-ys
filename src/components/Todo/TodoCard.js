@@ -15,7 +15,7 @@ const TodoCard = ({ todoItems, setTodoToEdit, setIsEditTodo, todoType }) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                   className={`p-4 mb-6 min-h-[50px] rounded-md shadow-sm ${
-                    snapshot.isDragging ? "bg-white bg-opacity-50" : "bg-white"
+                    snapshot.isDragging ? "bg-white bg-opacity-70" : "bg-white"
                   } `}
                   style={{ ...provided.draggableProps.style }}
                   onClick={() => {

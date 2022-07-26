@@ -63,7 +63,7 @@ function Todo() {
         setIsEditTodo={setIsEditTodo}
       />
       {/* 3 col div */}
-      <div className="relative flex space-x-6 h-[calc(100vh_-_170px)]">
+      <div className="relative flex space-x-6 min-h-[calc(100vh_-_170px)]">
         {Object.entries(todoList).map(([todoType, todoItems]) => {
           // mapping all the todo types and making columns
           return (
@@ -82,7 +82,7 @@ function Todo() {
                     <div
                       {...provided.droppableProps}
                       ref={provided.innerRef}
-                      className={`h-[calc(100%_-_80px)]`}
+                      className={`min-h-[calc(100%_-_80px)]`}
                     >
                       <TodoCard
                         setTodoToEdit={setTodoToEdit}
